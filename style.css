@@ -1,0 +1,67 @@
+body {
+    margin: 25px 35px;
+    background-color: rgb(254, 243, 220);
+    font-family: 'Commissioner', sans-serif;
+}
+
+h1 {
+    font-size: 44px;
+    margin: 0px;
+}
+
+h2 {
+    margin-bottom: 10px;
+    margin-top: 80px;
+    font-size: 30px;
+}
+
+a, a:visited {
+    text-decoration-style: dotted;
+}
+
+h1, h2 {
+    color: rgb(237, 132, 12);
+}
+
+p, li, a, a:visited {
+    color: rgb(120, 88, 60);
+    font-size: large;
+}
+
+p {
+    line-height: 1.5;
+    margin-top: 20px;
+    text-align: justify;
+}
+
+li {
+    line-height: 2;
+}
+
+p.subtitle {
+    margin: 1px 2px;
+}
+
+div.image {
+    margin-left: 50px;
+    margin-top: 16px;
+    float: right;
+    border: 1px solid black;
+    padding: 0px;
+}
+
+img {
+    margin: 0;
+    padding: 0;
+    display: block;
+}
+
+.container {
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.subElements {
+    margin-left: 5px;
+}

@@ -23,6 +23,16 @@
         p {
             line-height: 1.4;
         }
+        
+        table {
+            border-collapse: collapse;
+        }
+        
+        td,
+        th {
+            border: 1px solid black;
+            padding: 10px;
+        }
     </style>
 </head>
 
@@ -30,7 +40,59 @@
     <div class="container">
         <h1>Plink Game Examples</h1>
         <p>The following games demonstrate some of the features of the plink audio game library.</p>
-        <p>For play instructions, see <a href="https://github.com/shaunkane/plink/wiki/How-to-Play">the wiki</a>.</p>
+        <h2>How to play</h2>
+        <p>To start the game, click the link in your mobile and desktop browser, and follow the spoken instructions to start the game.</p>
+        <p>Because of the security restrictions on some mobile browsers, including recent versions of iOS, plink games cannot play audio or speech until the user performs a tap gesture. Therefore on these platforms the game will not play any audio or speech
+            when the game first loads. In these browsers, you must tap the screen to unlock the audio and continue the game.</p>
+        <p>Each game begins with instructions. Note that these instructions may refer to pressing directional buttons or the A, B, and start buttons. How the game is controlled depends on the type of device being used. See the table below for mappings between
+            plink game controller buttons and the keyboard keys or gestures that control them.</p>
+        <table role="table">
+            <thead>
+                <tr>
+                    <th>Button</th>
+                    <th>Keyboard</th>
+                    <th>Touch Screen</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Up</td>
+                    <td>up arrow</td>
+                    <td>swipe up</td>
+                </tr>
+                <tr>
+                    <td>Down</td>
+                    <td>down arrow</td>
+                    <td>swipe down</td>
+                </tr>
+                <tr>
+                    <td>Left</td>
+                    <td>left arrow</td>
+                    <td>swipe left</td>
+                </tr>
+                <tr>
+                    <td>Right</td>
+                    <td>right arrow</td>
+                    <td>swipe right</td>
+                </tr>
+                <tr>
+                    <td>A</td>
+                    <td>A key</td>
+                    <td>tap with one finger</td>
+                </tr>
+                <tr>
+                    <td>B</td>
+                    <td>B key</td>
+                    <td>tap with two fingers</td>
+                </tr>
+                <tr>
+                    <td>Start</td>
+                    <td>Enter key</td>
+                    <td>tap with three fingers</td>
+                </tr>
+            </tbody>
+        </table>
+        <p>For more detailed instructions, see <a href="https://github.com/shaunkane/plink/wiki/How-to-Play">the wiki</a>.</p>
         <h2>Maze</h2>
         <p>This is a simple and straightforward audio game. Use the arrow keys to navigate the maze, collect the treasures, and escape. This game features keyboard and gesture input, speech and sound effects, and scorekeeping.</p>
         <ul>

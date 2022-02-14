@@ -1,0 +1,83 @@
+<!-- This Source Code Form is subject to the terms of the Mozilla Public
+   - License, v. 2.0. If a copy of the MPL was not distributed with this
+   - file, You can obtain one at https://mozilla.org/MPL/2.0/. -->
+<html>
+
+<head>
+    <title>How a Screen Reader Works: Screen Racers</title>
+    <link rel="stylesheet" href="../../racers.css">
+</head>
+
+<body>
+    <!-- modal popups -->
+    <div class="modalFrame hidden">
+        <div class="modalInner">
+            <div class="modalTop">
+                <a href="#" onclick="setModalVisible(false)">[close window]</a>
+            </div>
+            <p class="modalText"></p>
+        </div>
+    </div>
+    <div class="screenReaderFrame hidden">
+        <div class="notification" id="outputNotification">
+            screen reader loaded
+        </div>
+        <div class="notification" id="inputNotification">
+            awaiting input
+        </div>
+    </div>
+    <div class="headerBlock">
+        <div class="header">
+            <a class="title" href="/">Screen<em style="color: white;">Racers</em></a>
+            <div class="toolbar">
+                <a class="toolbarButton" href="#" id="btnVoice">
+                Speech On
+            </a>
+                <a class="toolbarButton" href="#" id="btnSpeedDown">
+                &ndash;
+            </a>
+                <div class="toolbarText" href="#">
+                    Speed: <span id="playSpeed">1</span>x
+                </div>
+                <a class="toolbarButton" href="#" id="btnSpeedUp">
+                +
+            </a>
+                <a class="toolbarButton" href="#" id="btnShare">
+                Share
+            </a>
+            </div>
+        </div>
+    </div>
+    </div>
+    <div class="column">
+        <div class="innerPage">
+            <!-- BEGIN PAGE CONTENT -->
+            <h1>How a Screen Reader Works</h1>
+            <p>Screen readers are a type of assistive technology commonly used by blind and visually impaired computer users. Screen readers provide non-visual ways to read and interact with computer programs. Screen readers allow people with disabilities
+                to use the same computer programs as everyone else by translating visual information into a non-visual format.</p>
+            <p>There are many screen reader programs; Wikipedia offers <a href="https://en.wikipedia.org/wiki/List_of_screen_readers"> a list of current and historical screen readers.</a> A screen reader can be a separate program that runs alongside other
+                programs, or it can be built into your computer's operating system. Commonly used screen readers include <a href="https://nvaccess.org">NVDA</a> and <a href="https://freedomscientific.com">JAWS</a> for Windows, <a href="https://www.apple.com/accessibility/vision/">VoiceOver</a>                for MacOS and iOS, and <a href="https://support.google.com/accessibility/android/answer/6283677?hl=en">TalkBack</a> for Android and Chromebooks.</p>
+            <p>Screen readers provide two primary features. First, they read the contents of a computer screen using text-to-speech synthesis. Because graphical user interfaces can be complex, screen readers provide ways for users to explore different parts
+                of the interface. Second, because some traditional computer interface devices like keyboards and mice may not be accessible to some users, screen readers provide an alternate, keyboard-based interface for interacting with computer programs.</p>
+            <p>While modern screen readers are extremely sophisticated programs, they can fail when the original user interface has been designed incorrectly. If you are interested in making web sites or apps, it's important to learn how to design your user
+                interface in an accessible way. (We'll discuss resources for learning how to make accessible interfaces later, but <a href="https://webaim.org">WebAIM</a> is a great place to start.) Making sure that your interfaces are accessible doesn't
+                just help people with vision disabilities, it can also help people with other disabilities (such as reading disabilities), older adults, and everyone else.</p>
+            <p>Learning to use a screen reader is a good way to understand how to make your creations more accessible. However, if you haven't used a screen reader before, it can be confusing. If you don't typically use a screen reader, it can be tempting
+                to "cheat" and look at the screen, which may make it easier to miss some accessibility problems.</p>
+            <p>This game, Screen Racers, provides a set of introductory activities that show you generally how to navigate a page using a screen reader. You can play this game without having to download or activate a real screen reader (although you may
+                want to do so later).</p>
+            <p>If you're ready, you can <a href="../firstScreenReaderTest">start the next activity.</a></p>
+        </div>
+        <p class="footer">Created by <a href="https://shaunkane.com">Shaun Kane</a> &centerdot; See more <a href="https://accessibility.games">accessibility.games</a> &centerdot; View source <a href="https://github.com/shaunkane/screen-racers">on Github</a></p>
+
+    </div>
+    <script lang="javascript" src="../../racers.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function(event) {
+            // we count this activity as completed as soon as it's loaded
+            localStorage["howAScreenReaderWorks"] = "completed";
+        });
+    </script>
+</body>
+
+</html>

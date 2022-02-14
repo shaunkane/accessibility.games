@@ -1,0 +1,93 @@
+<!-- This Source Code Form is subject to the terms of the Mozilla Public
+   - License, v. 2.0. If a copy of the MPL was not distributed with this
+   - file, You can obtain one at https://mozilla.org/MPL/2.0/. -->
+<html>
+
+<head>
+    <title>Next Steps: Screen Racers</title>
+    <link rel="stylesheet" href="../../racers.css">
+</head>
+
+<body>
+    <!-- modal popups -->
+    <div class="modalFrame hidden">
+        <div class="modalInner">
+            <div class="modalTop">
+                <a href="#" onclick="setModalVisible(false)">[close window]</a>
+            </div>
+            <p class="modalText"></p>
+        </div>
+    </div>
+    <div class="screenReaderFrame hidden">
+        <div class="notification" id="outputNotification">
+            screen reader loaded
+        </div>
+        <div class="notification" id="inputNotification">
+            awaiting input
+        </div>
+    </div>
+    <div class="headerBlock">
+        <div class="header">
+            <a class="title" href="/">Screen<em style="color: white;">Racers</em></a>
+            <div class="toolbar">
+                <a class="toolbarButton" href="#" id="btnVoice">
+                Speech On
+            </a>
+                <a class="toolbarButton" href="#" id="btnSpeedDown">
+                &ndash;
+            </a>
+                <div class="toolbarText" href="#">
+                    Speed: <span id="playSpeed">1</span>x
+                </div>
+                <a class="toolbarButton" href="#" id="btnSpeedUp">
+                +
+            </a>
+                <a class="toolbarButton" href="#" id="btnShare">
+                Share
+            </a>
+            </div>
+        </div>
+    </div>
+    </div>
+    <div class="column">
+        <div class="innerPage">
+            <!-- BEGIN PAGE CONTENT -->
+
+
+            <h1>Next Steps</h1>
+            <p>Here are links to some useful sites to learn more about accessibility.</p>
+            <h2>Screen readers and other software</h2>
+            <ul>
+                <li><a href="https://nvaccess.org">NVDA</a>, an open source screen reader for Windows</li>
+                <li><a href="https://www.freedomscientific.com/products/software/jaws/">JAWS</a>, a commercial screen reader for Windows</li>
+                <li><a href="https://www.apple.com/accessibility/vision/">VoiceOver</a>, a built in screen reader for MacOS and iOS</li>
+
+            </ul>
+            <h2>General accessibility guides</h2>
+            <ul>
+                <li><a href="https://webaim.org">WebAIM</a>, an excellent general guide for learning about accessibility</li>
+                <li><a href="https://www.w3.org/WAI/standards-guidelines/wcag/">Web Content Accessibility Guidelines</a></li>
+                <li><a href="https://github.com/brunopulis/awesome-a11y">Awesome a11y</a>, a collection of accessibility resources</li>
+
+            </ul>
+            <h2>Information for students</h2>
+            <ul>
+                <li><a href="https://www.washington.edu/doit/">DO-IT Center</a></li>
+                <li><a href="https://www.washington.edu/accesscomputing/">AccessComputing</a></li>
+            </ul>
+
+            <!-- END PAGE CONTENT -->
+        </div>
+        <p class="footer">Created by <a href="https://shaunkane.com">Shaun Kane</a> &centerdot; See more <a href="https://accessibility.games">accessibility.games</a> &centerdot; View source <a href="https://github.com/shaunkane/screen-racers">on Github</a></p>
+
+    </div>
+    <script lang="javascript" src="../../racers.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function(event) {
+            // we count this activity as completed as soon as they load the page
+            localStorage["nextSteps"] = "completed";
+        });
+    </script>
+</body>
+
+</html>

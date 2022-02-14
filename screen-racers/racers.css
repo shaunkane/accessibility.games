@@ -1,0 +1,266 @@
+/*
+ * This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this
+ * file, You can obtain one at https://mozilla.org/MPL/2.0/.
+ */
+
+body {
+    margin: 0px;
+    font-family: sans-serif;
+    background-color: floralwhite;
+}
+
+p {
+    line-height: 1.4;
+    text-align: justify;
+}
+
+.headerBlock {
+    height: 50px;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 5;
+}
+
+.header {
+    background-color: rgb(70, 210, 131);
+    border-bottom: 0px solid white;
+    display: flex;
+    vertical-align: middle;
+    padding: 10px 20px;
+}
+
+.header a.title {
+    display: inline-block;
+    font-size: xx-large;
+    font-weight: bold;
+    line-height: 50px;
+    color: black;
+    text-decoration: none;
+}
+
+.header .toolbar {
+    display: flex;
+    justify-content: flex-end;
+    align-self: flex-end;
+    flex-grow: 1;
+    gap: 20px;
+}
+
+.header .toolbar a.toolbarButton {
+    display: inline-block;
+    font-size: normal;
+    height: 28px;
+    min-width: 30px;
+    padding: 10px;
+    text-align: center;
+    background-color: rgb(165, 228, 193);
+    line-height: 28px;
+    text-decoration: none;
+    color: black;
+    border-radius: 10%;
+}
+
+.header .toolbar .toolbarText {
+    line-height: 50px;
+}
+
+.column {
+    margin: 100px auto 40px auto;
+    max-width: 800px;
+}
+
+.innerPage {
+    background-color: white;
+    padding: 10px 40px 30px 40px;
+    border-right: 1px solid black;
+    border-top: 1px solid silver;
+    border-left: 1px solid silver;
+    border-bottom: 1px solid black;
+}
+
+.activity {
+    display: flex;
+    border: 1px dotted #ddd;
+    padding: 15px;
+    margin-bottom: 20px;
+}
+
+.activity .activityLeft {
+    flex-grow: 1;
+    font-size: large;
+    line-height: 1.4;
+}
+
+.activity .activityName {
+    font-weight: bold;
+}
+
+.activity .activityName a, .activity .activityName a:visited {
+    color: black;
+    text-decoration-style: dotted;
+}
+
+.activity .activityStatus {
+    display: inline-block;
+    border: 1px dotted #999;
+    margin-top: 5px;
+    padding: 5px 10px;
+    height: 18px;
+}
+
+.footer {
+    text-align: center;
+    color: #333;
+}
+
+.footer a, .footer a:visited {
+    color: #333;
+    text-decoration-style: dotted;
+}
+
+.highlight {
+    background-color: yellow !important;
+    color: black !important;
+}
+
+.strikeout {
+    background: linear-gradient(to left top, rgb(200, 200, 200) 45%, rgb(170, 170, 170) 45%, rgb(170, 170, 170) 55%, rgb(200, 200, 200) 55%);
+}
+
+.modalFrame {
+    background-color: rgba(0, 0, 0, 0.4);
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+
+.modalInner {
+    width: 400px;
+    height: 300px;
+    background-color: white;
+    border: 2px solid black;
+    padding: 20px 40px 20px 40px;
+    margin: 120px auto 50px auto;
+}
+
+.modalTop {
+    text-align: end;
+}
+
+.modalTop a, .modalTop a:visited {
+    color: black;
+    text-decoration-style: dotted;
+}
+
+.hidden {
+    display: none !important;
+}
+
+.notStarted {
+    background-color: rgb(237, 237, 237);
+}
+
+.inProgress {
+    background-color: rgb(244, 233, 173);
+}
+
+.completed {
+    background-color: rgb(206, 245, 216);
+}
+
+.sampleText {
+    margin: 10px;
+    border: 2px dotted black;
+    background-color: rgb(232, 232, 232);
+    padding: 20px;
+}
+
+.sampleText.obscured, .sampleText.obscured a, .sampleText.obscured a:visited {
+    color: rgb(232, 232, 232);
+}
+
+.sampleText h1 {
+    font-size: large;
+    margin-top: 0;
+    margin-bottom: 3px;
+}
+
+.sampleText h2 {
+    font-size: large;
+    margin-bottom: 3px;
+}
+
+.sampleText p {
+    line-height: 1.2;
+    margin-top: 0;
+    text-align: left;
+}
+
+.admiral {
+    margin: 0px 10px;
+    padding: 10px 20px;
+    border: 1px solid black;
+    background-color: #999;
+    display: flex;
+    min-height: 50px;
+}
+
+.admiral img {
+    display: inline-block;
+    padding-right: 20px;
+}
+
+.admiral .instructionText {
+    display: inline-block;
+    padding-right: 20px;
+}
+
+.sampleText h3 {
+    font-size: medium;
+}
+
+#quote {
+    background-color: white;
+    border-radius: 10px;
+    padding: 15px;
+}
+
+li {
+    line-height: 1.4;
+}
+
+.screenReaderFrame {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    z-index: 2;
+    display: flex;
+}
+
+.notification {
+    font-size: large;
+    color: white;
+    background-color: rgba(0, 0, 0, 0.85);
+    padding: 5px 10px;
+    flex-grow: 1;
+}
+
+#inputNotification {
+    background-color: rgba(130, 130, 130, 0.85);
+    max-width: 300px;
+}
+
+.hotkey {
+    white-space: nowrap;
+    background-color: #eee;
+    padding: 1px 3px;
+}
+
+#btnShare {
+    display: none;
+}

@@ -1,0 +1,162 @@
+<!-- This Source Code Form is subject to the terms of the Mozilla Public
+   - License, v. 2.0. If a copy of the MPL was not distributed with this
+   - file, You can obtain one at https://mozilla.org/MPL/2.0/. -->
+<html>
+
+<head>
+    <title>Working with Headers: Screen Racers</title>
+    <link rel="stylesheet" href="../../racers.css">
+    <style>
+        #editor {
+            position: relative;
+            height: 400;
+            border: 1px solid gray;
+            margin: 25px 45px;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- modal popups -->
+    <div class="modalFrame hidden">
+        <div class="modalInner">
+            <div class="modalTop">
+                <a href="#" onclick="setModalVisible(false)">[close window]</a>
+            </div>
+            <h2>You got it!</h2>
+            <p>You're making great progress. If you're ready, you can move to
+                <a href="../nextSteps/">the next activity.</a>
+            </p>
+        </div>
+    </div>
+    <div class="screenReaderFrame hidden">
+        <div class="notification" id="outputNotification">
+            screen reader loaded
+        </div>
+        <div class="notification" id="inputNotification">
+            awaiting input
+        </div>
+    </div>
+    <div class="headerBlock">
+        <div class="header">
+            <a class="title" href="/">Screen<em style="color: white;">Racers</em></a>
+            <div class="toolbar">
+                <a class="toolbarButton" href="#" id="btnVoice">
+                Speech On
+            </a>
+                <a class="toolbarButton" href="#" id="btnSpeedDown">
+                &ndash;
+            </a>
+                <div class="toolbarText" href="#">
+                    Speed: <span id="playSpeed">1</span>x
+                </div>
+                <a class="toolbarButton" href="#" id="btnSpeedUp">
+                +
+            </a>
+                <a class="toolbarButton" href="#" id="btnShare">
+                Share
+            </a>
+            </div>
+        </div>
+    </div>
+    </div>
+    <div class="column">
+        <div class="innerPage">
+            <!-- BEGIN PAGE CONTENT -->
+            <h1>Working with Headers</h1>
+
+            <p>In this activity you will edit an HTML document to make it easier to navigate using a screen reader.</p>
+
+            <p>You&rsquo;ve already seen how document structure such as headers enable screen reader users to skim through the document. If a document is not properly structured, the user must step through each element.</p>
+
+            <p>The document below is a simplified HTML version of Wikipedia&rsquo;s
+                <a href="https://en.wikipedia.org/wiki/Alan_Turing">biography of Alan Turing</a>. Unlike the actual Wikipedia page, this HTML version is poorly structured.</p>
+
+            <div id="editor"></div>
+            <p>Edit the above file to add the appropriate structure. Once that's done, press the play button below to simulate how a test screen reader user would navigate the page. Try to reduce the number of key presses needed.</p>
+            <div class="admiral">
+                <img src="../../admiral.png" width="80" height="80" alt="pixel art image of a brown tabby cat on a gradient background">
+                <div class="instructionText">
+                    <p id="quote">I'd like to learn about Alan Turing's life...</p>
+                </div>
+            </div>
+            <div class="sampleText" style="height: 300px; overflow: scroll; margin-top: 0; margin-bottom: 0px; border: 1px solid black;">
+                <h1>Alan Turing</h1>
+                <p>Alan Mathison Turing OBE FRS (23 June 1912 - 7 June 1954) was an English mathematican, computer scientist, logician, cryptanalyst, philosopher, and theoretical biologist. ...</p>
+                <h2>Early life and education</h2>
+                <h3>Family</h3>
+                <p>Turing was born in Maida Vale, London, while his father, Julius Mathison Turing (1873-1947), was on leave from his position with the Indian Civil Service...</p>
+                <h3>School</h3>
+                <p>Turing's parents enrolled him at St Michael's, a primary school at 20 Charles Road...</p>
+                <h3>University and work on computability</h3>
+                <p>After Sherborne, Turing studied as an undergraduate from 1931 to 1934 at King's College, Cambridge...</p>
+                <h2>Career and research</h2>
+                <h3>Cryptanalysis</h3>
+                <p>During the Second World War, Turing was a leading participant in the breaking of German ciphers at Bletchley Park...</p>
+                <h3>Bombe</h3>
+                <p>Within weeks of arriving at Bletchley Park, Turing had specified an electromechanical machine called the bombe, which could break Enigma more effectively than the Polish bomba kryptologiczna, from which its name was derived.</p>
+                <h3>Early computers and the Turing test</h3>
+                <p>Between 1945 and 1947, Turing lived in Hampton, London, while he worked on the design of the ACE (Automatic Computing Engine) at the National Physical Laboratory (NPL).</p>
+                <h2>Personal life</h2>
+                <h3>Engagement</h3>
+                <p>In 1941, Turing proposed marriage to Hut 8 colleague Joan Clarke, a fellow mathematician and cryptanalyst, but their engagement was short-lived...</p>
+                <h3>Conviction for indecency</h3>
+                <p>In January 1952, Turing was 39 when he started a relationship with Arnold Murray, a 19-year-old unemployed man. Just before Christmas, Turing was walking along Manchester's Oxford Road when he met Murray just outside the Regal Cinema and
+                    invited him to lunch...</p>
+                <h3>Death</h3>
+                <p>On 8 June 1954, at his house at 43 Adlington Road, Wilmslow, Turing's housekeeper found him dead. He had died the previous day at the age of 41. Cyanide poisoning was established as the cause of death...</p>
+            </div>
+            <div class="admiral">
+                <button onclick="getEditorCode()" style="margin-right: 20px; font-size: large; background-color: #ccc">Test HTML</button> <span style="line-height: 50px; font-size: large; color: white">Total steps: <span id="calculatedSteps"></span></span>
+            </div>
+            <p class="footer">Created by <a href="https://shaunkane.com">Shaun Kane</a> &centerdot; See more <a href="https://accessibility.games">accessibility.games</a> &centerdot; View source <a href="https://github.com/shaunkane/screen-racers">on Github</a></p>
+
+        </div>
+        <!-- this activity uses the ACE library: -->
+        <script src="ace/ace.js"></script>
+        <script>
+            var editor = ace.edit("editor")
+            editor.setTheme("ace/theme/xcode");
+            editor.session.setMode("ace/mode/html");
+            var goodString = "&lt;html&gt;\n&lt;head&gt;\n    &lt;title&gt;Alan Turing - Wikipedia&lt;/title&gt;\n&lt;/head&gt;&lt;body&gt;\n    &lt;h1&gt;Alan Turing&lt;/h1&gt;\n    &lt;p&gt;Alan Mathison Turing OBE FRS (23 June 1912 - 7 June 1954) was an English mathematican, computer scientist, logician, cryptanalyst, philosopher, and theoretical biologist. ...&lt;/p&gt;\n    &lt;h2&gt;Early life and education&lt;/h2&gt;\n    &lt;h3&gt;Family&lt;/h3&gt;\n    &lt;p&gt;Turing was born in Maida Vale, London, while his father, Julius Mathison Turing (1873-1947), was on leave from his position with the Indian Civil Service...&lt;/p&gt;\n    &lt;h3&gt;School&lt;/h3&gt;\n    &lt;p&gt;Turing's parents enrolled him at St Michael's, a primary school at 20 Charles Road...&lt;/p&gt;\n    &lt;h3&gt;University and work on computability&lt;/h3&gt;\n    &lt;p&gt;After Sherborne, Turing studied as an undergraduate from 1931 to 1934 at King's College, Cambridge...&lt;/p&gt;\n    &lt;h2&gt;Career and research&lt;/h2&gt;\n    &lt;h3&gt;Cryptanalysis&lt;/h3&gt;\n    &lt;p&gt;During the Second World War, Turing was a leading participant in the breaking of German ciphers at Bletchley Park...&lt;/p&gt;\n    &lt;h3&gt;Bombe&lt;/h3&gt;\n    &lt;p&gt;Within weeks of arriving at Bletchley Park, Turing had specified an electromechanical machine called the bombe, which could break Enigma more effectively than the Polish bomba kryptologiczna, from which its name was derived.&lt;/p&gt;\n    &lt;h3&gt;Early computers and the Turing test&lt;/h3&gt;\n    &lt;p&gt;Between 1945 and 1947, Turing lived in Hampton, London, while he worked on the design of the ACE (Automatic Computing Engine) at the National Physical Laboratory (NPL).&lt;/p&gt;\n    &lt;h2&gt;Personal life&lt;/h2&gt;\n    &lt;h3&gt;Engagement&lt;/h3&gt;\n    &lt;p&gt;In 1941, Turing proposed marriage to Hut 8 colleague Joan Clarke, a fellow mathematician and cryptanalyst, but their engagement was short-lived...&lt;/p&gt;\n    &lt;h3&gt;Conviction for indecency&lt;/h3&gt;\n    &lt;p&gt;In January 1952, Turing was 39 when he started a relationship with Arnold Murray, a 19-year-old unemployed man. Just before Christmas, Turing was walking along Manchester's Oxford Road when he met Murray just outside the Regal Cinema and invited him\n        to lunch...&lt;/p&gt;\n    &lt;h3&gt;Death&lt;/h3&gt;\n    &lt;p&gt;On 8 June 1954, at his house at 43 Adlington Road, Wilmslow, Turing's housekeeper found him dead. He had died the previous day at the age of 41. Cyanide poisoning was established as the cause of death...&lt;/p&gt;\n&lt;/body&gt;\n&lt;/html&gt;"
+            var badString = "&lt;html&gt;\n\n&lt;head&gt;\n    &lt;title&gt;Alan Turing - Wikipedia&lt;/title&gt;\n&lt;/head&gt;\n\n&lt;body&gt;\n    &lt;p&gt;Alan Turing&lt;/p&gt;\n    &lt;p&gt;Alan Mathison Turing OBE FRS (23 June 1912 - 7 June 1954) was an English mathematican, computer scientist, logician, cryptanalyst, philosopher, and theoretical biologist. ...&lt;/p&gt;\n    &lt;p&gt;Early life and education&lt;/p&gt;\n    &lt;p&gt;Family&lt;/p&gt;\n    &lt;p&gt;Turing was born in Maida Vale, London, while his father, Julius Mathison Turing (1873-1947), was on leave from his position with the Indian Civil Service...&lt;/p&gt;\n    &lt;p&gt;School&lt;/p&gt;\n    &lt;p&gt;Turing's parents enrolled him at St Michael's, a primary school at 20 Charles Road...&lt;/p&gt;\n    &lt;p&gt;University and work on computability&lt;/p&gt;\n    &lt;p&gt;After Sherborne, Turing studied as an undergraduate from 1931 to 1934 at King's College, Cambridge...&lt;/p&gt;\n    &lt;p&gt;Career and research&lt;/p&gt;\n    &lt;p&gt;Cryptanalysis&lt;/p&gt;\n    &lt;p&gt;During the Second World War, Turing was a leading participant in the breaking of German ciphers at Bletchley Park...&lt;/p&gt;\n    &lt;p&gt;Bombe&lt;/p&gt;\n    &lt;p&gt;Within weeks of arriving at Bletchley Park, Turing had specified an electromechanical machine called the bombe, which could break Enigma more effectively than the Polish bomba kryptologiczna, from which its name was derived.&lt;/p&gt;\n    &lt;p&gt;Early computers and the Turing test&lt;/p&gt;\n    &lt;p&gt;Between 1945 and 1947, Turing lived in Hampton, London, while he worked on the design of the ACE (Automatic Computing Engine) at the National Physical Laboratory (NPL).&lt;/p&gt;\n    &lt;p&gt;Personal life&lt;/p&gt;\n    &lt;p&gt;Engagement&lt;/p&gt;\n    &lt;p&gt;In 1941, Turing proposed marriage to Hut 8 colleague Joan Clarke, a fellow mathematician and cryptanalyst, but their engagement was short-lived...&lt;/p&gt;\n    &lt;p&gt;Conviction for indecency&lt;/p&gt;\n    &lt;p&gt;In January 1952, Turing was 39 when he started a relationship with Arnold Murray, a 19-year-old unemployed man. Just before Christmas, Turing was walking along Manchester's Oxford Road when he met Murray just outside the Regal Cinema and invited him\n        to lunch...&lt;/p&gt;\n    &lt;p&gt;Death&lt;/p&gt;\n    &lt;p&gt;On 8 June 1954, at his house at 43 Adlington Road, Wilmslow, Turing's housekeeper found him dead. He had died the previous day at the age of 41. Cyanide poisoning was established as the cause of death...&lt;/p&gt;\n\n&lt;/body&gt;\n\n&lt;/html&gt;";
+            var unescaped = badString.replace(/&lt;/g, '<').replace(/&gt;/g, '>');
+            editor.setValue(unescaped)
+        </script>
+        <!-- end ACE code-->
+        <script lang="javascript" src="../../racers.js"></script>
+        <script lang="javascript" src="../../vsr.js"></script>
+        <script>
+            document.addEventListener('DOMContentLoaded', function(event) {
+                // we started the activity
+                if (localStorage["addingHeaders"] != "completed") {
+                    localStorage["addingHeaders"] = "inProgress";
+                };
+
+                // load our screen reader but keep it hidden
+            });
+
+
+            function getEditorCode() {
+                var editor = ace.edit("editor")
+                var txt = editor.getValue()
+                var tagList = Array.from(txt.matchAll(/<[a-z]+[0-3]?>/g))
+
+                const lastTag = tagList[tagList.length - 2][0];
+                console.log(lastTag)
+                    // calculate our score
+                if (lastTag == '<h1>' || lastTag == '<h2>' || lastTag == '<h3>') {
+                    win()
+                } else {
+                    document.getElementById('calculatedSteps').innerText = tagList.length;
+                }
+            }
+
+            function win() {
+                localStorage["addingHeaders"] = "completed";
+                setModalVisible(true);
+            }
+        </script>
+</body>
+
+</html>

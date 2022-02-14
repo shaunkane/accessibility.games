@@ -1,0 +1,144 @@
+<!-- This Source Code Form is subject to the terms of the Mozilla Public
+   - License, v. 2.0. If a copy of the MPL was not distributed with this
+   - file, You can obtain one at https://mozilla.org/MPL/2.0/. -->
+<html>
+
+<head>
+    <title>Screen Racers</title>
+    <link rel="stylesheet" href="racers.css">
+</head>
+
+<body>
+    <!-- modal popups -->
+    <div class="modalFrame hidden">
+        <div class="modalInner">
+            <div class="modalTop">
+                <a href="#" onclick="hideModal()">[close window]</a>
+            </div>
+            <p class="modalText"></p>
+        </div>
+    </div>
+    <div class="screenReaderFrame hidden">
+        <div class="notification" id="outputNotification">
+            screen reader loaded
+        </div>
+        <div class="notification" id="inputNotification">
+            awaiting input
+        </div>
+    </div>
+    <div class="headerBlock">
+        <div class="header">
+            <a class="title" href="/">Screen<em style="color: white;">Racers</em></a>
+            <div class="toolbar">
+                <a class="toolbarButton" href="#" id="btnVoice">
+                Speech On
+            </a>
+                <a class="toolbarButton" href="#" id="btnSpeedDown">
+                &ndash;
+            </a>
+                <div class="toolbarText" href="#">
+                    Speed: <span id="playSpeed">1</span>x
+                </div>
+                <a class="toolbarButton" href="#" id="btnSpeedUp">
+                +
+            </a>
+                <a class="toolbarButton" href="#" id="btnShare">
+                Share
+            </a>
+            </div>
+        </div>
+    </div>
+    </div>
+    <div class="column">
+        <div class="innerPage">
+            <!-- BEGIN PAGE CONTENT -->
+
+            <p>Screen Racers is a web game that can teach you about <a href="https://webaim.org/techniques/screenreader/">screen readers.</a> Through a series of challenges, you can learn about how screen readers work, practice controlling a screen reader,
+                and see how the design of a web page can support or hinder a screen reader user.</p>
+            <p>To get started, click on any of the activities below. As you play, Screen Racers keeps track of your progress. You can start playing, take a break, and then come back later and pick up where you left off.</p>
+
+            <h2>Part 1. Introduction</h2>
+            <div class="activity" id="howScreenReaderWorks">
+                <div class="activityLeft">
+                    <div class="activityName"><a href="activity/howScreenReaderWorks">How a screen reader works</a></div>
+                    <div class="activityDescription">Learn more about screen readers and what they can do.</div>
+                </div>
+                <span class="activityStatus" data-activity="howAScreenReaderWorks">not started</span>
+            </div>
+            <div class="activity" id="firstScreenReaderTest">
+                <div class="activityLeft">
+                    <div class="activityName"><a href="activity/firstScreenReaderTest">A first screen reader test</a></div>
+                    <div class="activityDescription">Test drive the virtual screen reader.</div>
+                </div>
+                <span class="activityStatus" data-activity="firstScreenReaderTest">not started</span>
+            </div>
+
+            <h2>Part 2. Screen Reader Practice</h2>
+            <div class="activity" id="usingHeadersToNavigate">
+                <div class="activityLeft">
+                    <div class="activityName"><a href="activity/usingHeadersToNavigate">Using headers to navigate</a></div>
+                    <div class="activityDescription">Use keyboard shortcuts to navigate through the document.</div>
+                </div>
+                <span class="activityStatus" data-activity="usingHeadersToNavigate">not started</span>
+            </div>
+            <h2>Part 3. Creating Accessible HTML Pages</h2>
+            <div class="activity" id="firstScreenReaderTest">
+                <div class="activityLeft">
+                    <div class="activityName"><a href="activity/addingHeaders">Working with headers</a></div>
+                    <div class="activityDescription">Explore the effects of document structure on accessibility.</div>
+                </div>
+                <span class="activityStatus" data-activity="addingHeaders">not started</span>
+            </div>
+            <h2>Part 4. Next Steps</h2>
+            <div class="activity" id="nextSteps">
+                <div class="activityLeft">
+                    <div class="activityName"><a href="activity/nextSteps">What to try next</a></div>
+                    <div class="activityDescription">Resources and suggestions for learning more about accessibility</div>
+                </div>
+                <span class="activityStatus" data-activity="nextSteps">not started</span>
+            </div>
+            <!-- 
+            <p style="margin-top: 30px;">If you think this is useful, or if you are proud of yourself after completing this game, you can <a href="#">share it with others.</a></p> 
+        -->
+
+            <!-- END PAGE CONTENT-->
+        </div>
+        <p class="footer">Created by <a href="https://shaunkane.com">Shaun Kane</a> &centerdot; See more <a href="https://accessibility.games">accessibility.games</a> &centerdot; View source <a href="https://github.com/shaunkane/screen-racers">on Github</a></p>
+
+    </div>
+    <script lang="javascript" src="racers.js"></script>
+    <script lang="javascript" src="vsr.js"></script>
+
+    <script>
+        // this page shows completion badges for each of the activities
+        // completion status is tracked in localStorage
+        // they have three status levels: "notStarted", "started", "completed"
+        // if we have settings for those, load them
+
+        var activityList = ["firstScreenReaderTest", "howScreenReaderWorks", "nextSteps"];
+
+        function checkActivities() {
+            activityList.forEach((activity) => {});
+            document.querySelectorAll("span.activityStatus").forEach((span) => {
+                span.innerHTML = ''; // remove children
+                const activityStatus = localStorage[span.dataset.activity];
+                if (activityStatus == 'notStarted' || activityStatus == null) {
+                    span.classList.add('notStarted');
+                    span.innerText = 'not started';
+                } else if (activityStatus == 'inProgress') {
+                    span.classList.add('inProgress');
+                    span.innerText = 'in progress';
+                } else if (activityStatus == 'completed') {
+                    span.classList.add('completed');
+                    span.innerHTML = 'completed';
+                }
+            })
+        }
+        // check when we load the page
+        document.addEventListener('DOMContentLoaded', function(event) {
+            checkActivities();
+        });
+    </script>
+</body>
+
+</html>

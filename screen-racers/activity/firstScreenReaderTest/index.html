@@ -1,0 +1,136 @@
+<!-- This Source Code Form is subject to the terms of the Mozilla Public
+   - License, v. 2.0. If a copy of the MPL was not distributed with this
+   - file, You can obtain one at https://mozilla.org/MPL/2.0/. -->
+<html>
+
+<head>
+    <title>A First Screen Reader Test: Screen Racers</title>
+    <link rel="stylesheet" href="../../racers.css">
+</head>
+
+<body>
+    <!-- modal popups -->
+    <div class="modalFrame hidden">
+        <div class="modalInner">
+            <div class="modalTop">
+                <a href="#" onclick="setModalVisible(false)">[close window]</a>
+            </div>
+            <h2>You got it!</h2>
+            <p>You're making great progress. If you're ready, you can move to
+                <a href="../usingHeadersToNavigate">the next activity.</a>
+            </p>
+        </div>
+    </div>
+    <div class="screenReaderFrame hidden">
+        <div class="notification" id="outputNotification">
+            screen reader loaded
+        </div>
+        <div class="notification" id="inputNotification">
+            awaiting input
+        </div>
+    </div>
+    <div class="headerBlock">
+        <div class="header">
+            <a class="title" href="/">Screen<em style="color: white;">Racers</em></a>
+            <div class="toolbar">
+                <a class="toolbarButton" href="#" id="btnVoice">
+                Speech On
+            </a>
+                <a class="toolbarButton" href="#" id="btnSpeedDown">
+                &ndash;
+            </a>
+                <div class="toolbarText" href="#">
+                    Speed: <span id="playSpeed">1</span>x
+                </div>
+                <a class="toolbarButton" href="#" id="btnSpeedUp">
+                +
+            </a>
+                <a class="toolbarButton" href="#" id="btnShare">
+                Share
+            </a>
+            </div>
+        </div>
+    </div>
+    </div>
+    <div class="column">
+        <div class="innerPage">
+            <!-- BEGIN PAGE CONTENT -->
+            <h1>A First Screen Reader Test</h1>
+            <p>Here you will learn about how to control a screen reader. For this example, we'll show what's happening on screen so that you can follow along visually.</p>
+            <p>In a moment we will turn on the virtual screen reader. Before we do so, check out the buttons on the top navigation bar. There you can set speech on or off and set the speaking rate. Once you start the screen reader, it will make noise (if
+                Speech is on), so make sure you're in an environment where that is acceptable. Whether speech is on or off, the words read by the screen reader will be shown in the black bar at the top of the screen.</p>
+            <p>For this exercise, we'll run the screen reader in the box below, rather than on the whole page. This example is an excerpt from Wikipedia's <a href="https://en.wikipedia.org/wiki/Grace_Hopper">biography of the human Admiral Grace Hopper</a>                (not the cat).
+                <p>When you start the screen reader, it will begin to read the text one sentence at a time. Use <span class="hotkey">shift+up arrow</span> to read the previous sentence, and <span class="hotkey">shift+down arrow</span> to read the next sentence.
+                    To try it, press <span class="hotkey">shift+S</span> to start the screen reader. Try reading a few sentences forward, then reading a few backward. If you want to turn it off, simply press <span class="hotkey">shift+S</span> again.</p>
+                <p>Note that most screen reader programs use a combination of system keys, such as Control, Alt, Insert, etc., to control the screen reader. To prevent collisions between Screen Racers and other programs, we mostly use <span class="hotkey">shift+some key</span>                    for Screen Racers commands.</p>
+
+                <div class="sampleText">
+                    <h1>Grace Hopper</h1>
+                    <p>Grace Brewster Murray Hopper (nee Murray; December 9, 1906 - January 1, 1992) was an American computer scientist and United States Navy rear admiral. One of the first programmers of the <a href="https://en.wikipedia.org/wiki/Harvard_Mark_I">Harvard Mark I computer</a>,
+                        she was a pioneer of computer programming who invented one of the first linkers. Hopper was the first to devise the theory of machine-independent programming languages, and the FLOW-MATIC programming language she created using
+                        this theory was later extended to create <a href="https://en.wikipedia.org/wiki/COBOL">COBOL</a>, an early high-level programming language still in use today.</p>
+                    <h2>Early life and education</h2>
+                    <p>In 1934, Hopper earned a Ph.D. in mathematics from Yale under the direction of <a href="https://en.wikipedia.org/wiki/Øystein_Ore">Oystein Ore.</a> Her <a href="https://en.wikipedia.org/wiki/Dissertation">dissertation</a>, "New Types
+                        of Irreducibility Criteria", was published that same year. She began teaching mathematics at Vassar in 1931, and was promoted to associate professor in 1941.
+                    </p>
+                    <h2>Retirement</h2>
+                    <p>In accordance with Navy attrition regulations, Hopper retired from the Naval Reserve with the rank of <a href="https://en.wikipedia.org/wiki/Commander_(United_States)">commander</a> at age 60 at the end of 1966. She was recalled to
+                        active duty in August 1967 for a six-month period that turned into an indefinite assignment. She again retired in 1971 but was again asked to return to active duty in 1972. She was promoted to <a href="https://en.wikipedia.org/wiki/Commander_(United_States)">captain</a>                        in 1973 by Admiral Elmo R. Zumwalt, Jr.</p>
+                </div>
+                <p>To complete this activity, use the keyboard to navigate to the end of the document.</p>
+                <p>Document read so far: <span id="percentRead">0</span>%</p>
+
+        </div>
+        <p class="footer">Created by <a href="https://shaunkane.com">Shaun Kane</a> &centerdot; See more <a href="https://accessibility.games">accessibility.games</a> &centerdot; View source <a href="https://github.com/shaunkane/screen-racers">on Github</a></p>
+
+    </div>
+    <script lang="javascript" src="../../racers.js"></script>
+    <script lang="javascript" src="../../vsr.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function(event) {
+            // we started the activity
+            if (localStorage["firstScreenReaderTest"] != "completed") {
+                localStorage["firstScreenReaderTest"] = "inProgress";
+            };
+
+            // load our screen reader but keep it hidden
+            vsr = new VirtualScreenReader(document.querySelector('.sampleText'));
+        });
+
+        // this is a hacky way to check whether our playback is done
+        setInterval(() => {
+            const percentRead = (vsr.currentPhraseIndex + 1) / vsr.phrases.length * 100;
+            if (percentRead == 100) {
+                win();
+            }
+        }, 3000);
+
+        // at the start, the screen reader is hidden and off
+        var screenReaderEnabled = false;
+
+        document.addEventListener('keyup', (event) => {
+            console.log(event)
+            if (event.key == 'S') {
+                screenReaderEnabled = !screenReaderEnabled;
+                setScreenReaderVisible(screenReaderEnabled);
+            } else if (event.key == 'ArrowDown' && event.shiftKey && screenReaderEnabled) {
+                // how much have we read
+                const percentRead = (vsr.currentPhraseIndex + 1) / vsr.phrases.length * 100;
+                document.getElementById('percentRead').innerText = parseInt(percentRead);
+                vsr.readNextElement();
+            } else if (event.key == 'ArrowUp' && event.shiftKey && screenReaderEnabled) {
+                // how much have we read
+                const percentRead = (vsr.currentPhraseIndex + 1) / vsr.phrases.length * 100;
+                document.getElementById('percentRead').innerText = parseInt(percentRead);
+                vsr.readPreviousElement();
+            }
+        });
+
+        function win() {
+            localStorage["firstScreenReaderTest"] = "completed";
+            setModalVisible(true);
+        }
+    </script>
+</body>
+
+</html>
